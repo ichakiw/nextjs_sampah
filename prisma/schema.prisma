@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(uuid())
+  name          String
+  email         String          @unique
+  password      String
+  phone         String          @unique
+  role          Role            @default(USER)
+  saldo         Float           @default(0)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  laporan       LaporanSampah[]
+
+  @@map("users")
+}
+
+model JenisSampah {
+  id            String          @id @default(uuid())
+  name          String          @unique
+  price         Float
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  laporan       LaporanSampah[]
+
+  @@map("jenis_sampah")
+}
+
+model Wilayah {
+  id                String          @id @default(uuid())
+  name              String          @unique
+  kotaAdministrasi  String
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  laporan           LaporanSampah[]
+
+  @@map("wilayah")
+}
+
+model LaporanSampah {
+  id              String          @id @default(uuid())
+  userId          String
+  jenisSampahId   String
+  wilayahId       String
+  weight          Float
+  totalPrice      Float
+  status          StatusLaporan   @default(PENDING)
+  tanggalLaporan  DateTime        @default(now())
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jenisSampah     JenisSampah     @relation(fields: [jenisSampahId], references: [id], onDelete: Restrict)
+  wilayah         Wilayah         @relation(fields: [wilayahId], references: [id], onDelete: Restrict)
+  foto            FotoSampah?
+
+  @@unique([userId, jenisSampahId, wilayahId, tanggalLaporan])
+  @@map("laporan_sampah")
+}
+
+model FotoSampah {
+  id              String          @id @default(uuid())
+  laporanId       String          @unique
+  imageUrl        String
+  createdAt       DateTime        @default(now())
+  laporan         LaporanSampah   @relation(fields: [laporanId], references: [id], onDelete: Cascade)
+
+  @@map("foto_sampah")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum StatusLaporan {
+  PENDING
+  APPROVED
+  REJECTED
+}

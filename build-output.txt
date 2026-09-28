@@ -1,0 +1,60 @@
+﻿
+> bank-sampah@0.1.0 build
+> next build
+
+▲ Next.js 16.2.11 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 10.2s
+  Running TypeScript ...
+  Finished TypeScript in 297ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/24) ...
+  Generating static pages using 7 workers (6/24) 
+  Generating static pages using 7 workers (12/24) 
+  Generating static pages using 7 workers (18/24) 
+✓ Generating static pages using 7 workers (24/24) in 1229ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /admin/dashboard
+├ ƒ /admin/jenis-sampah
+├ ƒ /admin/jenis-sampah/[id]
+├ ƒ /admin/jenis-sampah/[id]/edit
+├ ○ /admin/jenis-sampah/create
+├ ƒ /admin/laporan
+├ ƒ /admin/laporan/[id]
+├ ƒ /admin/users
+├ ƒ /admin/users/[id]
+├ ƒ /admin/wilayah
+├ ƒ /admin/wilayah/[id]
+├ ƒ /admin/wilayah/[id]/edit
+├ ○ /admin/wilayah/create
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/me
+├ ƒ /api/auth/register
+├ ƒ /api/jenis-sampah
+├ ƒ /api/jenis-sampah/[id]
+├ ƒ /api/laporan
+├ ƒ /api/laporan/[id]
+├ ƒ /api/upload
+├ ƒ /api/users
+├ ƒ /api/wilayah
+├ ƒ /api/wilayah/[id]
+├ ○ /login
+├ ○ /register
+├ ƒ /user/dashboard
+├ ƒ /user/laporan
+├ ƒ /user/laporan/[id]
+└ ○ /user/laporan/create
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
